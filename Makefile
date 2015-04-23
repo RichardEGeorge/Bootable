@@ -5,8 +5,8 @@ boot.img: boot.pre
 	dd if=/dev/zero of=boot.img ibs=512 count=2880 conv=osync
 	dd if=boot.pre of=boot.img ibs=512 obs=512 seek=0 conv=notrunc,sync
 
-boot.pre: boot.bin loader2.bin nulls.bin
-	cat boot.bin loader2.bin nulls.bin > boot.pre
+boot.pre: boot.bin loader2.bin 
+	cat boot.bin loader2.bin > boot.pre
 
 boot.bin: boot.asm
 	nasm -f bin boot.asm -o boot.bin
